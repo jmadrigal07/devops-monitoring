@@ -15,4 +15,13 @@ scrape_configs:
       - localhost
     labels:
       job: tasslog
-      __path__: /tmp2/tass.log
+      __path__: /var/lib/docker/volumes/logs_volume_logs/_data/*.log
+  pipeline_stages:
+  - regex:
+      # extracts only Severity_level,Error_code and Application_Id from the log line
+      expression: 'Severity_level="(?P<Severity_level>.*?)" response_code="(?P<response_code>.*?)" Application_Id="(?P<Application_Id>.*?)"'
+  - labels:
+      # sources extracted Severity_level, Error_code and Application_Id as label 'Severity_level' value
+      Severity_level:
+      response_code:
+      Application_Id:
