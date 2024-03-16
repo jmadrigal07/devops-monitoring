@@ -73,7 +73,7 @@ services:
     container_name: promtail
     restart: unless-stopped
     volumes:
-    - /tmp/:/tmp2:ro
+    - /var/lib/docker/volumes/logs_volume_logs/_data/:/var/log/bot/:ro
     - ./promtail.yml:/etc/promtail/promtail.yml
     - promtail-data:/tmp
     command: -config.file=/etc/promtail/promtail.yml
