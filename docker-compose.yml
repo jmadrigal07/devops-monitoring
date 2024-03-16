@@ -6,6 +6,8 @@ volumes:
   loki-data:
   promtail-data:
   portainer_data:
+  logs_volume_bot:
+    external: true
 
 services:
   grafana:
@@ -73,7 +75,7 @@ services:
     container_name: promtail
     restart: unless-stopped
     volumes:
-    - /var/lib/docker/volumes/logs_volume_logs/_data/:/var/log/bot/:ro
+    - logs_volume_bot:/var/log/bot/:ro
     - ./promtail.yml:/etc/promtail/promtail.yml
     - promtail-data:/tmp
     command: -config.file=/etc/promtail/promtail.yml
