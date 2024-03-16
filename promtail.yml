@@ -15,7 +15,7 @@ scrape_configs:
       - localhost
     labels:
       job: tasslog
-      __path__: /var/lib/docker/volumes/logs_volume_logs/_data/*.log
+      __path__: /var/lib/docker/volumes/logs_volume_bot/_data/*.log
   pipeline_stages:
   - regex:
       # extracts only Severity_level,Error_code and Application_Id from the log line
